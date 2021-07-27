@@ -23,7 +23,7 @@ export const Register = (props) => {
         existingUserCheck()
             .then((userExists) => {
                 if (!userExists) {
-                    fetch("http://localhost:8088/users", {
+                    fetch("http://localhost:8088/customers", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
@@ -36,7 +36,7 @@ export const Register = (props) => {
                         .then(res => res.json())
                         .then(createdUser => {
                             if (createdUser.hasOwnProperty("id")) {
-                                localStorage.setItem("outnabout_user", createdUser.id)
+                                localStorage.setItem("kennel_customer", createdUser.id)
                                 history.push("/")
                             }
                         })
@@ -57,7 +57,7 @@ export const Register = (props) => {
             </dialog>
 
             <form className="form--login" onSubmit={handleRegister}>
-                <h1 className="h3 mb-3 font-weight-normal">Please Register for Out-N-About</h1>
+                <h1 className="h3 mb-3 font-weight-normal">Please Register for NSS Kennels</h1>
                 <fieldset>
                     <label htmlFor="firstName"> First Name </label>
                     <input ref={firstName} type="text" name="firstName" className="form-control" placeholder="First name" required autoFocus />
@@ -77,3 +77,4 @@ export const Register = (props) => {
         </main>
     )
 }
+
