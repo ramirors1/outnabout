@@ -4,11 +4,11 @@ import { PropsAndState } from './PropsAndState'
 export const Home = () => (
     <>
         <h2>Out-N-About</h2>
-        <small>Explore and enjoy what TN has to offer.</small>
+        <small>Looking for something to do in TN.</small>
 
         <address>
-            <div>Here and there</div>
+            <div>Check it out</div>
         </address>
-        <PropsAndState yourName={""} />
+        <PropsAndState yourName={"Event Seeker"} />
     </>
 )

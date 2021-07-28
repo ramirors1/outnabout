@@ -1,10 +1,10 @@
 import React, { useContext } from "react"
 
 import "./Event.css"
-import { Link } from "react-router-dom"
+// import { Link } from "react-router-dom"
 import { EventContext } from "./EventProvider"
 import { useHistory } from "react-router-dom"
-import userEvent from "@testing-library/user-event"
+// import userEvent from "@testing-library/user-event"
 
 export const EventCard = ({ event }) =>{
   const { deleteEvent } = useContext(EventContext)
@@ -12,7 +12,7 @@ export const EventCard = ({ event }) =>{
   const handleRelease = () => {
   deleteEvent(event.id)
     .then(() => {
-      history.push("/events")
+      history.push("/")
 })
 }
 
@@ -30,4 +30,4 @@ return (
         <button onClick={handleRelease}>Delete Event</button>
     </section>
     
-)}
+)} 

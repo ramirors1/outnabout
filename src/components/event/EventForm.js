@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useState } from "react"
 import { EventContext } from "./EventProvider"
 import "./Event.css"
 import { useHistory } from 'react-router-dom';
@@ -35,6 +35,7 @@ export const EventForm = () => {
     Set the property to the new value
     using object bracket notation. */
     newEvent[event.target.id] = event.target.value
+    console.log(event.target.value)
     // update state
     setEvent(newEvent)
   }
@@ -42,7 +43,7 @@ export const EventForm = () => {
   const handleClickSaveEvent = (event) => {
     event.preventDefault() //Prevents the browser from submitting the form
 
-    const currentUserId = parseInt(sessionStorage.getItem("Outnabout_user"))
+    const currentUserId = parseInt(localStorage.getItem("Outnabout_user"))
 
       //Invoke addEvent passing the new article object as an argument
       //Once complete, change the url and display the article list
@@ -55,7 +56,7 @@ export const EventForm = () => {
         userId: currentUserId,
       }
       addEvent(newEvent)
-        .then(() => history.push("/events"))
+        .then(() => history.push("/"))
     }
   
   return (
@@ -75,17 +76,25 @@ export const EventForm = () => {
       </fieldset>
       <fieldset>
         <div className="form-group">
+          <label htmlFor="date">Event date:</label>
+          <input type="text" id="date" required autoFocus className="form-control" placeholder="Event date" value={event.date} onChange={handleControlledInputChange} />
+        </div>
+      </fieldset>
+      <fieldset>
+        <div className="form-group">
           <label htmlFor="url">Event url:</label>
           <input type="text" id="url" required autoFocus className="form-control" placeholder="Event url" value={event.url} onChange={handleControlledInputChange} />
         </div>
       </fieldset>
 
       <button className="btn btn-primary" onClick={handleClickSaveEvent}>
-        Save Event
+        Save Event 
           </button>
+          
+          
     </form>
   )
-}
+}  
 
 // import { addNewEvent } from "/scripts/data/provider.js"
 

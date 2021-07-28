@@ -7,7 +7,7 @@ import "./Event.css"
 export const EventList = () => {
 
     const { events, getEvents } = useContext(EventContext)
-    const [ filteredEvents, setFiltered ] = useState([])
+    const [ filteredEvents ] = useState([])
     const history = useHistory()
 
     console.log(filteredEvents)
@@ -25,9 +25,9 @@ export const EventList = () => {
           Add Event
         </button>
         <div className="events">
-          {
-            events.map(event => {
-              return <EventCard key={event.id} event={event} />
+          {events.map(event => {
+              return (<EventCard key={event.id} event={event} />
+              );  
             })
           }
         </div>

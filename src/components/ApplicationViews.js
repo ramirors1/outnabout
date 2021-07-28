@@ -11,11 +11,11 @@ export const ApplicationViews = () => {
         <>
       {/* Render the location list when http://localhost:3000/ */}
       <Route exact path="/">
-        <Home />
+      <Home />
       </Route>
-
+      
       <EventProvider>
-            <Route exact path="/events">
+            <Route exact path="/">
                 <EventList />
             </Route>
             <Route exact path="/events/create">
@@ -25,7 +25,11 @@ export const ApplicationViews = () => {
 		          <EventDetail />
 	          </Route>
       </EventProvider>
-    
+      
+         
+
+      
+
       {/* <CustomerProvider>
           <Route exact path="/customers">
              <CustomerList />

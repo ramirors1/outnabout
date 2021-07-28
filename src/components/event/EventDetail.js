@@ -1,15 +1,14 @@
 import React, { useContext, useEffect, useState } from "react"
 import { EventContext } from "./EventProvider"
 import "./Event.css"
-import { useParams, useHistory } from "react-router-dom"
+import { useParams } from "react-router-dom"
 
 export const EventDetail = () => {
-  const { getEventById, deleteEvent } = useContext(EventContext)
+  const { getEventById } = useContext(EventContext)
 
-	const [event, setEvent] = useState({})
+	      const [event, setEvent] = useState({})
 
-	const {eventId} = useParams();
-  const history = useHistory()
+	      const {eventId} = useParams();
 
   useEffect(() => {
     console.log("useEffect", eventId)
