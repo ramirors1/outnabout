@@ -1,7 +1,10 @@
 import React from "react"
 import { Route } from "react-router-dom"
 import { Home } from "./Home"
-import { addEventForm } from "./event/AddEvent.js"
+import { EventForm } from "./event/EventForm.js"
+import { EventDetail } from "./event/EventDetail.js"
+import { EventList } from "./event/EventList.js"
+import { EventProvider } from "./event/EventProvider.js"
 
 export const ApplicationViews = () => {
     return (
@@ -11,23 +14,19 @@ export const ApplicationViews = () => {
         <Home />
       </Route>
 
-      {/* <AnimalProvider>
-      <LocationProvider>
-        <CustomerProvider>
-            <Route exact path="/animals">
-                <AnimalList />
+      <EventProvider>
+            <Route exact path="/events">
+                <EventList />
             </Route>
-            <Route exact path="/animals/create">
-              <AnimalForm />
+            <Route exact path="/events/create">
+              <EventForm />
             </Route>  
-            <Route exact path="/animals/detail/:animalId(\d+)">
-		          <AnimalDetail />
+            <Route exact path="/event/detail/:eventId(\d+)">
+		          <EventDetail />
 	          </Route>
-        </CustomerProvider>
-      </LocationProvider>
-      </AnimalProvider>
-     
-      <CustomerProvider>
+      </EventProvider>
+    
+      {/* <CustomerProvider>
           <Route exact path="/customers">
              <CustomerList />
           </Route>
@@ -51,8 +50,8 @@ export const ApplicationViews = () => {
             <EmployeeForm />
           </Route>
         </LocationProvider>
-      </EmployeeProvider>
- */}
+      </EmployeeProvider> */}
+ 
 
       {/* <Route path="/login">
         <Login />
