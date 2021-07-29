@@ -26,7 +26,7 @@ export const EventProvider = (props) => {
             },
             body: JSON.stringify(eventObj)
         })
-        .then(setEvents)
+        .then(getEvents)
     }
 
     const deleteEvent = eventId => {

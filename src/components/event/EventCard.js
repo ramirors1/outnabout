@@ -25,7 +25,7 @@ return (
           </a>
         </h3>
         <div className="event__date">{event.date }</div>
-        <div>Posted by: {event.user.name}</div>
+        <div>Posted by: {event.user?.name}</div>
         {/* <div className="event__timestamp">{event.timestamp }</div>      */}
         <button onClick={handleRelease}>Delete Event</button>
     </section>

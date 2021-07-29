@@ -26,8 +26,8 @@ export const EventList = () => {
         </button>
         <div className="events">
           {events.map(event => {
-              return (<EventCard key={event.id} event={event} />
-              );  
+              return <EventCard key={event.id} event={event} />
+               
             })
           }
         </div>

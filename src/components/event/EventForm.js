@@ -16,7 +16,7 @@ export const EventForm = () => {
     city: "",
     date: "",
     url: "",
-    userId: 0,
+    userId: 0
   })
 
  
@@ -27,21 +27,21 @@ export const EventForm = () => {
 
   //when a field changes, update state. The return will re-render and display based on the values in state
   //Controlled component
-  const handleControlledInputChange = (event) => {
+  const handleControlledInputChange = (e) => {
     /* When changing a state object or array,
     always create a copy, make changes, and then set state.*/
     const newEvent = { ...event }
     /* Event is an object with properties.
     Set the property to the new value
     using object bracket notation. */
-    newEvent[event.target.id] = event.target.value
-    console.log(event.target.value)
+    newEvent[e.target.id] = e.target.value
+    console.log(e.target.value)
     // update state
     setEvent(newEvent)
   }
 
-  const handleClickSaveEvent = (event) => {
-    event.preventDefault() //Prevents the browser from submitting the form
+  const handleClickSaveEvent = (e) => {
+    e.preventDefault() //Prevents the browser from submitting the form
 
     const currentUserId = parseInt(localStorage.getItem("Outnabout_user"))
 
@@ -53,7 +53,7 @@ export const EventForm = () => {
         city: event.city,
         date: event.date,
         url: event.url,
-        userId: currentUserId,
+        userId: currentUserId
       }
       addEvent(newEvent)
         .then(() => history.push("/"))
