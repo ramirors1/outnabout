@@ -56,7 +56,6 @@ export const EventForm = () => {
         userId: currentUserId
       }
       addEvent(newEvent)
-        .then(() => history.push("/"))
     }
   
   return (
@@ -77,7 +76,7 @@ export const EventForm = () => {
       <fieldset>
         <div className="form-group">
           <label htmlFor="date">Event date:</label>
-          <input type="text" id="date" required autoFocus className="form-control" placeholder="Event date" value={event.date} onChange={handleControlledInputChange} />
+          <input type="date" id="date" required autoFocus className="form-control" placeholder="Event date" value={event.date} onChange={handleControlledInputChange} />
         </div>
       </fieldset>
       <fieldset>

@@ -8,17 +8,17 @@ export const NavBar = (props) => {
             <li className="navbar__item active">
                 <Link className="navbar__link" to="/">Out-N-About</Link>
             </li>
-            <li className="navbar__item">
+            {/* <li className="navbar__item">
                 <Link className="navbar__link" to="/events">Events</Link>
+            </li> */}
+            <li className="navbar__item">
+                <Link className="navbar__link" to="/animals">Interested</Link>
             </li>
             <li className="navbar__item">
-                <Link className="navbar__link" to="/animals">Animals</Link>
+                <Link className="navbar__link" to="/customers">Messages</Link>
             </li>
             <li className="navbar__item">
-                <Link className="navbar__link" to="/customers">Customers</Link>
-            </li>
-            <li className="navbar__item">
-                <Link className="navbar__link" to="/employees">Employees</Link>
+                <Link className="navbar__link" to="/login">Logout</Link>
             </li>
         </ul>
     )
