@@ -56,6 +56,7 @@ export const EventForm = () => {
         userId: currentUserId
       }
       addEvent(newEvent)
+      .then(() => history.push("/"))
     }
   
   return (
@@ -89,8 +90,7 @@ export const EventForm = () => {
       <button className="btn btn-primary" onClick={handleClickSaveEvent}>
         Save Event 
           </button>
-          
-          
+                      
     </form>
   )
 }  

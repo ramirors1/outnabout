@@ -33,7 +33,7 @@ export const EventProvider = (props) => {
         return fetch(`http://localhost:8088/events/${eventId}`, {
           method: "DELETE"
         })
-          .then(getEvents)
+        .then(getEvents)
     }
     /*
         You return a context provider which has the

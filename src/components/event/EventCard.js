@@ -9,7 +9,8 @@ import { useHistory } from "react-router-dom"
 export const EventCard = ({ event }) =>{
   const { deleteEvent } = useContext(EventContext)
   const history = useHistory()
-  const handleRelease = () => {
+  
+  const handleDelete = () => {
   deleteEvent(event.id)
     .then(() => {
       history.push("/")
@@ -27,7 +28,9 @@ return (
         <div className="event__date">{event.date }</div>
         <div>Posted by: {event.user?.name}</div>
         {/* <div className="event__timestamp">{event.timestamp }</div>      */}
-        <button onClick={handleRelease}>Delete Event</button>
-    </section>
+        <button onClick={handleDelete}>
+          Delete Event
+          </button>
+    </section> 
     
 )} 
