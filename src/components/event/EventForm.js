@@ -6,10 +6,6 @@ import { useHistory } from 'react-router-dom';
 export const EventForm = () => {
   const { addEvent } = useContext(EventContext)
   const history = useHistory()
-  /*
-  With React, we do not target the DOM with `document.querySelector()`. Instead, our return (render) reacts to state or props.
-  Define the intial state of the form inputs with useState()
-  */
 
   const [event, setEvent] = useState({
     title: "",
@@ -18,12 +14,6 @@ export const EventForm = () => {
     url: "",
     userId: 0
   })
-
- 
-  /*
-  Reach out to the world and get customers state
-  and locations state on initialization.
-  */
 
   //when a field changes, update state. The return will re-render and display based on the values in state
   //Controlled component
@@ -45,7 +35,7 @@ export const EventForm = () => {
 
     const currentUserId = parseInt(localStorage.getItem("Outnabout_user"))
 
-      //Invoke addEvent passing the new article object as an argument
+      //Invoke addEvent passing the new event object as an argument
       //Once complete, change the url and display the article list
 
       const newEvent = {

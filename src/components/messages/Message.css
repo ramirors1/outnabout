@@ -1,0 +1,64 @@
+.message__head {
+    padding: 0px 25px;
+  }
+  .messages {
+    display: grid;
+    /* grid-template-columns: auto; */
+    grid-template-columns: 20% 20% 20%;
+    padding: 15px 25px;
+    margin: 20px;
+    background-color: lightgray;
+  }
+  .message__buttons {
+    /* padding: 0px 585px 0px 45px; */
+    grid-column-start: 2;
+    width: max-content;
+    align-self: center;
+  }
+  .main__messages {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    word-wrap: break-word;
+    margin: 10px;
+  }
+  .message__body {
+    font-weight: bold;
+  }
+  .main__message__form {
+    display: grid;
+    grid-template-columns: 20% 20% 20%;
+    padding: 15px 25px;
+    margin: 20px;
+  }
+  textarea.form-control {
+    width: 40em;
+  }
+  
+  /* Dialog window styling */
+  
+  .privateDialog {
+      position: fixed;
+      bottom: 120px;
+      padding: 20px;
+      border: solid 2px cornflowerblue;
+      border-radius: 6px;
+      box-shadow: 1px 1px 1px 1px rgb(128, 128, 128);
+  }
+  
+  .radio__wrapper {
+      display: flex;
+      flex-direction: column;
+  }
+  
+  .radio-group {
+      margin: 10px 20px;
+  }
+  
+  .radio-button {
+      margin: 5px;
+  }
+  
+  .dialog-button {
+      width: 50%;
+      align-self: center;
+  }

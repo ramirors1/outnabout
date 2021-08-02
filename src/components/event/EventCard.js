@@ -1,5 +1,4 @@
 import React, { useContext } from "react"
-
 import "./Event.css"
 // import { Link } from "react-router-dom"
 import { EventContext } from "./EventProvider"
