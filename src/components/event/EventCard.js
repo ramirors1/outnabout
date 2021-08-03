@@ -2,17 +2,19 @@ import React from "react"
 import "./Event.css"
 import { Link } from "react-router-dom"
 
-export const EventCard = ({ event }) => (
-    <section className="event">
-        <h3 className="event__name">
-          <Link to={`/events/detail/${event.id}`}>
-            { event.name }
-          </Link>
+export const EventCard = ({ event }) =>(
+  
+  <section className="event">
+  <h3 className="events">  
+  <Link to={`/events/detail/${event.id}`}>
+            { event.title }
+  </Link>
         </h3>
-        <div className="event__title">{ event.title }</div>
-        <div className="event__city">{ event.city }</div>
+        <div className="event__date">{ event.date }</div>
     </section>
-)
+)       
+
+
 
 // import React, { useContext } from "react"
 // import "./Event.css"
@@ -30,7 +32,7 @@ export const EventCard = ({ event }) => (
 //   const handleDelete = () => {
 //   deleteEvent(event.id)
 //     .then(() => {
-//       history.push("/")
+//       history.push("/events")
 // })
 // }
 

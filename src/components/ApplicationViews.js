@@ -22,17 +22,20 @@ export const ApplicationViews = () => {
         <>
       {/* Render the location list when http://localhost:3000/ */}
       
+      <Route exact path="/">
+        <Home />
+      </Route>
+
       <UserProvider>
                 <FriendProvider>
                 <EventProvider>
-            <Route exact path="/">
-            <Home />
+            <Route exact path="/events">
                 <EventList />
             </Route>
             <Route exact path="/events/create">
               <EventForm />
             </Route>  
-            <Route exact path="/event/detail/:eventId(\d+)">
+            <Route exact path="/events/detail/:eventId(\d+)">
 		          <EventDetail />
 	          </Route>
       </EventProvider>

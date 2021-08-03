@@ -22,7 +22,7 @@ export const Outnabout = () => (
         }
       }}
     />
-
+    
     <Route path="/login">
       <Login />
     </Route>
