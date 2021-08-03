@@ -114,46 +114,46 @@ export const ApplicationViews = () => {
           </>
     )
 } 
-      {/* <EventProvider>
-            <Route exact path="/">
-            <Home />
-                <EventList />
-            </Route>
-            <Route exact path="/events/create">
-              <EventForm />
-            </Route>  
-            <Route exact path="/event/detail/:eventId(\d+)">
-		          <EventDetail />
-	          </Route>
-      </EventProvider>
+//       {/* <EventProvider>
+//             <Route exact path="/">
+//             <Home />
+//                 <EventList />
+//             </Route>
+//             <Route exact path="/events/create">
+//               <EventForm />
+//             </Route>  
+//             <Route exact path="/event/detail/:eventId(\d+)">
+// 		          <EventDetail />
+// 	          </Route>
+//       </EventProvider>
       
-      <MessageProvider>
-           <FriendProvider>
-              <Route exact path="/messages">
-                <MessageList />
-                </Route>
-                 <Route exact path="/messages/edit/:messageId(\d+)">
-                <MessageForm />
-              </Route>
-          </FriendProvider>
-      </MessageProvider>
- */}
-      {/* <UserProvider>
-        <LocationProvider>
-          <Route exact path="/employees">
-            <EmployeeList />
-          </Route>
-          <Route exact path="/employees/create">
-            <EmployeeForm />
-          </Route>
-        </LocationProvider>
-      </UserProvider> */} 
+//       <MessageProvider>
+//            <FriendProvider>
+//               <Route exact path="/messages">
+//                 <MessageList />
+//                 </Route>
+//                  <Route exact path="/messages/edit/:messageId(\d+)">
+//                 <MessageForm />
+//               </Route>
+//           </FriendProvider>
+//       </MessageProvider>
+//  */}
+//       {/* <UserProvider>
+//         <LocationProvider>
+//           <Route exact path="/employees">
+//             <EmployeeList />
+//           </Route>
+//           <Route exact path="/employees/create">
+//             <EmployeeForm />
+//           </Route>
+//         </LocationProvider>
+//       </UserProvider> */} 
  
 
-      {/* <Route path="/login">
-        <Login />
-      </Route> */}
-    {/* </>
-  );
-}; */}
+//       {/* <Route path="/login">
+//         <Login />
+//       </Route> */}
+//     {/* </>
+//   );
+// }; */}
           

@@ -1,188 +1,291 @@
-import React, { useContext, useEffect, useState } from "react"
-import { useHistory, useParams } from "react-router-dom"
-import { MessageContext } from "./MessageProvider"
-import { FriendContext } from "../friends/FriendProvider"
+import React, { useContext, useEffect, useState } from "react";
+import { MessageContext } from "./MessageProvider";
+import { UserContext } from "../users/UserProvider";
+import "./Message.css";
+import { useHistory, useParams } from "react-router-dom";
 
 export const MessageForm = () => {
-    const { addMessage, getMessageById, updateMessage } = useContext(MessageContext)
-    const { users, getUsers } = useContext(FriendContext)
+  const { getMessageById, addMessage, updateMessage } =
+    useContext(MessageContext);
+  const { users, getUsers } = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(true);
 
-    const [message, setMessage] = useState({
-            textArea: "",
-            date: "",
-            timestamp: Date.now(),
+  const { messageId } = useParams();
+
+  const history = useHistory();
+
+  const [message, setMessage] = useState({
+    title: "",
+    message: "",
+    userId: parseInt(localStorage.getItem("Outnabout_user")),
+  });
+
+  useEffect(() => {
+    getUsers().then(() => {
+      if (messageId) {
+        getMessageById(messageId).then((message) => {
+          setMessage(message);
+          setIsLoading(false);
+        });
+      } else {
+        setIsLoading(false);
+      }
     });
-    const history = useHistory()
+  }, []);
+
+  const handleControlledInputChange = (event) => {
+    /* When changing a state object or array,
+	always create a copy, make changes, and then set state.*/
+    const newMessage = { ...message };
+    /* Animal is an object with properties.
+	Set the property to the new value
+	using object bracket notation. */
+    newMessage[event.target.id] = event.target.value;
+    // update state
+    setMessage(newMessage);
+  };
+
+  const handleSaveMessage = () => {
+    if (messageId) {
+      updateMessage(message).then(history.push("/messages"));
+    } else {
+      addMessage(message).then(history.push("/messages"));
+    }
+  };
+
+  return (
+    <>
+      <form className="form">
+        <label htmlFor="message-title">Title:</label>
+        <input
+          className="message-title"
+          required
+          type="text"
+          id="title"
+          value={message.title}
+          onChange={handleControlledInputChange}
+        ></input>
+
+        <label htmlFor="message-title">Message:</label>
+        <input
+          className="message-message"
+          required
+          type="text"
+          id="message"
+          value={message.message}
+          onChange={handleControlledInputChange}
+        ></input>
+        <label htmlFor="message-recipient">PRIVATE MESSAGE ONLY:</label>
+        <select
+          name="messageId"
+          id="recipientId"
+          value={message.recipientId}
+          className="form-control"
+          onChange={handleControlledInputChange}
+        >
+          <option>Select a Recipient</option>
+          {users.map((user) => {
+            return (
+              <option key={user.id} value={user.id}>
+                {user.name}
+              </option>
+            );
+          })}
+        </select>
+
+        <button className="new-message-button" onClick={handleSaveMessage}>
+          {messageId ? "Save Message" : "Add Message"}
+        </button>
+      </form>
+    </>
+  );
+};
+
+// import React, { useContext, useEffect, useState } from "react"
+// import { useHistory, useParams } from "react-router-dom"
+// import { MessageContext } from "./MessageProvider"
+// import { FriendContext } from "../friends/FriendProvider"
+
+// export const MessageForm = () => {
+//     const { addMessage, getMessageById, updateMessage } = useContext(MessageContext)
+//     const { users, getUsers } = useContext(FriendContext)
+
+//     const [message, setMessage] = useState({
+//             textArea: "",
+//             date: "",
+//             timestamp: Date.now(),
+//     });
+//     const history = useHistory()
 
 
 
-    //for edit, hold on to state of message in this view
-    // const [message, setMessage] = useState({})
-    //wait for data before button is active
-    const [isLoading, setIsLoading] = useState(true);
+//     //for edit, hold on to state of message in this view
+//     // const [message, setMessage] = useState({})
+//     //wait for data before button is active
+//     const [isLoading, setIsLoading] = useState(true);
 
-    const {messageId} = useParams();
-	// const history = useHistory();
+//     const {messageId} = useParams();
+// 	// const history = useHistory();
 
     
-    useEffect(() => {
-                if (messageId) {
-                    getMessageById(messageId).then(message => {
-                        setMessage(message)
-                        setIsLoading(false)
-                    })
-                } else {
-                    setIsLoading(false)
-                }
-            }, [])
+//     useEffect(() => {
+//                 if (messageId) {
+//                     getMessageById(messageId).then(message => {
+//                         setMessage(message)
+//                         setIsLoading(false)
+//                     })
+//                 } else {
+//                     setIsLoading(false)
+//                 }
+//             }, [])
 
-    // const handleControlledInputChange = (event) => {
-    //     const newMessage = { ...message }
-    //     newMessage[event.target.id] = event.target.value
-    //     setMessage(newMessage)
-    // }
+//     // const handleControlledInputChange = (event) => {
+//     //     const newMessage = { ...message }
+//     //     newMessage[event.target.id] = event.target.value
+//     //     setMessage(newMessage)
+//     // }
 
-    const handleControlledInputChange = (controlEvent) => {
-        const newMessage = { ...message }
-        let selectedVal = controlEvent.target.value
+//     const handleControlledInputChange = (controlEvent) => {
+//         const newMessage = { ...message }
+//         let selectedVal = controlEvent.target.value
         
-        if (controlEvent.target.id.includes("Id")) {
-        selectedVal = parseInt(selectedVal)
-        }
-        // if (controlEvent.target.id == 0){
-        // selectedVal = 
-        // }
-        newMessage[controlEvent.target.id] = selectedVal
-        setMessage(newMessage)
-    }
+//         if (controlEvent.target.id.includes("Id")) {
+//         selectedVal = parseInt(selectedVal)
+//         }
+//         // if (controlEvent.target.id == 0){
+//         // selectedVal = 
+//         // }
+//         newMessage[controlEvent.target.id] = selectedVal
+//         setMessage(newMessage)
+//     }
 
 
 
 
-    // const handleClickSaveMessage = (event) => {
-    //     event.preventDefault()
+//     // const handleClickSaveMessage = (event) => {
+//     //     event.preventDefault()
 
-    //     // const userId = parseInt(message.userId)
+//     //     // const userId = parseInt(message.userId)
 
-    //     const newMessage = {
-    //         textArea: message.textArea,
-    //         date: message.date,
-    //         userId: parseInt(sessionStorage.getItem("nutshell_user")),
-    //         timeStamp: Date.now(message.timeStamp),
-    //     }
-    //     addMessage(newMessage).then(() => history.push("/messages"))
+//     //     const newMessage = {
+//     //         textArea: message.textArea,
+//     //         date: message.date,
+//     //         userId: parseInt(sessionStorage.getItem("nutshell_user")),
+//     //         timeStamp: Date.now(message.timeStamp),
+//     //     }
+//     //     addMessage(newMessage).then(() => history.push("/messages"))
         
-    // }
+//     // }
 
 
 
-    const handleSaveMessage = () => {
-        // if (parseInt(animal.locationId) === 0) {
-        //     window.alert("Please select a location")
-        // } else {
-        //disable the button - no extra clicks
-        setIsLoading(true);
-        if (messageId) {
-            //PUT - update
-            updateMessage({
-                id: message.id,
-                textArea: message.textArea,
-                date: message.date,
-                userId: parseInt(sessionStorage.getItem("nutshell_user")),
-                timeStamp: Date.now(message.timeStamp),
-            })
-            .then(() => history.push("/messages"))
-        } else {
-            //POST - add
-            addMessage({
-                textArea: message.textArea,
-                date: message.date,
-                userId: parseInt(sessionStorage.getItem("nutshell_user")),
-                timeStamp: Date.now(message.timeStamp),
-            })
-            .then(() => history.push("/messages"))
-        }
+//     const handleSaveMessage = () => {
+//         // if (parseInt(animal.locationId) === 0) {
+//         //     window.alert("Please select a location")
+//         // } else {
+//         //disable the button - no extra clicks
+//         setIsLoading(true);
+//         if (messageId) {
+//             //PUT - update
+//             updateMessage({
+//                 id: message.id,
+//                 textArea: message.textArea,
+//                 date: message.date,
+//                 userId: parseInt(sessionStorage.getItem("nutshell_user")),
+//                 timeStamp: Date.now(message.timeStamp),
+//             })
+//             .then(() => history.push("/messages"))
+//         } else {
+//             //POST - add
+//             addMessage({
+//                 textArea: message.textArea,
+//                 date: message.date,
+//                 userId: parseInt(sessionStorage.getItem("nutshell_user")),
+//                 timeStamp: Date.now(message.timeStamp),
+//             })
+//             .then(() => history.push("/messages"))
+//         }
         
-    }
+//     }
 
-    // Get customers and locations. If animalId is in the URL, getAnimalById
-    useEffect(() => {
-        // getCustomers().then(getLocations).then(() => {
-        if (messageId){
-            getMessageById(messageId)
-            .then(message => {
-                setMessage(message)
-                setIsLoading(false)
-            })
-        } else {
-            setIsLoading(false)
-        }
+//     // Get customers and locations. If animalId is in the URL, getAnimalById
+//     useEffect(() => {
+//         // getCustomers().then(getLocations).then(() => {
+//         if (messageId){
+//             getMessageById(messageId)
+//             .then(message => {
+//                 setMessage(message)
+//                 setIsLoading(false)
+//             })
+//         } else {
+//             setIsLoading(false)
+//         }
         
-    }, [])
+//     }, [])
 
     
-    return(
-        <form className="messageForm">
-        <h2 className="messageForm_header"> New Message</h2>
-        <fieldset>
-            <div className="form-group">
-            <label htmlFor="textArea">Write your message here:</label>
-            <input
-                type="text"
-                id="textArea"
-                required
-                autoFocus
-                className="form-control"
-                placeholder="Message TextArea"
-                value={message.textArea}
-                onChange={handleControlledInputChange}
-                />
-            </div>
-        </fieldset>
-        <fieldset>
-            <div className="form-group">
-                <label htmlFor="date">message date</label>
-                <input type="date" 
-                id="date" 
-                required autoFocus className="form-control" 
-                placeholder="Message Date" 
-                value={message.date} 
-                onChange={handleControlledInputChange} 
-                />
-            </div>
-        </fieldset>
-        {/* <fieldset>
-            <div className="form-group">
-                <label htmlFor="date">message sent to</label>
-                <select
-                    id="user" 
-                    required autoFocus className="form-control" 
-                    placeholder="Message receiver" 
-                    value={message.userId} 
-                    onChange={handleControlledInputChange} 
-                >
-                    <option value="0"> Select User</option>
-                    {users.map((l) => (
-                    <option key={l.id} value={l.id}>
-                        {l.name}
-                    </option>
-                    ))}
-                </select>
-            </div>
-        </fieldset> */}
-        <button className="btn btn-primary"
-        disabled={isLoading}
-        onClick={event => {
-            event.preventDefault() // Prevent browser from submitting the form and refreshing the page
-            handleSaveMessage()
-        }}>
-        {messageId ? "Save Message" : "Add Message" }</button>
-        </form>
-    )
+//     return(
+//         <form className="messageForm">
+//         <h2 className="messageForm_header"> New Message</h2>
+//         <fieldset>
+//             <div className="form-group">
+//             <label htmlFor="textArea">Write your message here:</label>
+//             <input
+//                 type="text"
+//                 id="textArea"
+//                 required
+//                 autoFocus
+//                 className="form-control"
+//                 placeholder="Message TextArea"
+//                 value={message.textArea}
+//                 onChange={handleControlledInputChange}
+//                 />
+//             </div>
+//         </fieldset>
+//         <fieldset>
+//             <div className="form-group">
+//                 <label htmlFor="date">message date</label>
+//                 <input type="date" 
+//                 id="date" 
+//                 required autoFocus className="form-control" 
+//                 placeholder="Message Date" 
+//                 value={message.date} 
+//                 onChange={handleControlledInputChange} 
+//                 />
+//             </div>
+//         </fieldset>
+//         {/* <fieldset>
+//             <div className="form-group">
+//                 <label htmlFor="date">message sent to</label>
+//                 <select
+//                     id="user" 
+//                     required autoFocus className="form-control" 
+//                     placeholder="Message receiver" 
+//                     value={message.userId} 
+//                     onChange={handleControlledInputChange} 
+//                 >
+//                     <option value="0"> Select User</option>
+//                     {users.map((l) => (
+//                     <option key={l.id} value={l.id}>
+//                         {l.name}
+//                     </option>
+//                     ))}
+//                 </select>
+//             </div>
+//         </fieldset> */}
+//         <button className="btn btn-primary"
+//         disabled={isLoading}
+//         onClick={event => {
+//             event.preventDefault() // Prevent browser from submitting the form and refreshing the page
+//             handleSaveMessage()
+//         }}>
+//         {messageId ? "Save Message" : "Add Message" }</button>
+//         </form>
+//     )
 
 
 
-}
+// }
 
 // import React, { useContext, useState } from "react"
 // import { MessageContext } from "./MessageProvider"

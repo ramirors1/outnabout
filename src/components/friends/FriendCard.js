@@ -5,7 +5,7 @@ import { UserContext } from "../users/UserProvider"
 export const FriendItem = ({ friend }) => {
     const { users, getUsers } = useContext(UserContext)
     
-    const currentUserId = parseInt(sessionStorage.getItem("Outnabout_user"))
+    const currentUserId = parseInt(localStorage.getItem("Outnabout_user"))
 
       useEffect(()=> {
         getUsers()
