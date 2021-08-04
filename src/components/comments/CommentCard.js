@@ -3,8 +3,8 @@ import { CommentContext } from "../comments/CommentProvider";
 import { useHistory, useParams } from "react-router-dom";
 import "./Comment.css";
 
-export const CommentCard = ({comment}) => {
-  const { comments, getComments, addEventComments, updateEventComment, getEventCommentById } =
+export const CommentCard = ({event}) => {
+  const { comments, getComments, addEventComment, updateEventComment, getEventCommentById } =
     useContext(CommentContext);
 
   const [comment, setComment] = useState({
@@ -14,8 +14,9 @@ export const CommentCard = ({comment}) => {
   const [isLoading, setIsLoading] = useState(false); //? Enables and disables the button
   const { commentId } = useParams(); //* Is an object
   const history = useHistory();
+  
   useEffect(() => {
-    console.log("Use Effect For Note is working!");
+    console.log("Use Effect For Comment is working!");
     if (commentId) {
       getEventCommentById(commentId).then((comment) => {
         setComment(comment);
@@ -26,26 +27,28 @@ export const CommentCard = ({comment}) => {
     }
   }, []);
   console.log(comment);
+
   const ChangeHandler = (e) => {
     const newComment = { ...comment };
     newComment[e.target.id] = e.target.value;
     console.log(newComment);
     setComment(newComment);
   };
+
   const SubmitHandler = () => {
     if (comment.comments === "") {
       window.alert(
-        "Add comments in the textarea to save content for this event."
+        "Add comments in the text area to save content for this event."
       );
     } else {
       setIsLoading(true); //? Disables the button - no extra clicks
-      if (comentId) {
+      if (commentId) {
         //!Put
         const upEventCommentObjs = {
           id: commentId,
           eventId: parseInt(comment.eventId),
           userId: parseInt(localStorage.getItem("afe_user")),
-          content: note.content,
+          content: comment.content,
         };
         updateEventComment(upEventCommentObjs).then(() =>
           //? 🤔
@@ -69,7 +72,7 @@ export const CommentCard = ({comment}) => {
 
       <form className="comments">
         <textarea
-          id="comments"
+        //   id="comments"
           id="content"
           rows="9"
           cols="70"

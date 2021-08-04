@@ -1,105 +1,105 @@
-import React, { useContext, useEffect, useState } from "react";
-import { MessageContext } from "./MessageProvider";
-import { UserContext } from "../users/UserProvider";
-import "./Message.css";
-import { useHistory, useParams } from "react-router-dom";
+// import React, { useContext, useEffect, useState } from "react";
+// import { MessageContext } from "./MessageProvider";
+// import { UserContext } from "../users/UserProvider";
+// import "./Message.css";
+// import { useHistory, useParams } from "react-router-dom";
 
-export const MessageForm = () => {
-  const { getMessageById, addMessage, updateMessage } =
-    useContext(MessageContext);
-  const { users, getUsers } = useContext(UserContext);
-  const [isLoading, setIsLoading] = useState(true);
+// export const MessageForm = () => {
+//   const { getMessageById, addMessage, updateMessage } =
+//     useContext(MessageContext);
+//   const { users, getUsers } = useContext(UserContext);
+//   const [isLoading, setIsLoading] = useState(true);
 
-  const { messageId } = useParams();
+//   const { messageId } = useParams();
 
-  const history = useHistory();
+//   const history = useHistory();
 
-  const [message, setMessage] = useState({
-    title: "",
-    message: "",
-    userId: parseInt(localStorage.getItem("Outnabout_user")),
-  });
+//   const [message, setMessage] = useState({
+//     title: "",
+//     message: "",
+//     userId: parseInt(localStorage.getItem("Outnabout_user")),
+//   });
 
-  useEffect(() => {
-    getUsers().then(() => {
-      if (messageId) {
-        getMessageById(messageId).then((message) => {
-          setMessage(message);
-          setIsLoading(false);
-        });
-      } else {
-        setIsLoading(false);
-      }
-    });
-  }, []);
+//   useEffect(() => {
+//     getUsers().then(() => {
+//       if (messageId) {
+//         getMessageById(messageId).then((message) => {
+//           setMessage(message);
+//           setIsLoading(false);
+//         });
+//       } else {
+//         setIsLoading(false);
+//       }
+//     });
+//   }, []);
 
-  const handleControlledInputChange = (event) => {
-    /* When changing a state object or array,
-	always create a copy, make changes, and then set state.*/
-    const newMessage = { ...message };
-    /* Animal is an object with properties.
-	Set the property to the new value
-	using object bracket notation. */
-    newMessage[event.target.id] = event.target.value;
-    // update state
-    setMessage(newMessage);
-  };
+//   const handleControlledInputChange = (event) => {
+//     /* When changing a state object or array,
+// 	always create a copy, make changes, and then set state.*/
+//     const newMessage = { ...message };
+//     /* Animal is an object with properties.
+// 	Set the property to the new value
+// 	using object bracket notation. */
+//     newMessage[event.target.id] = event.target.value;
+//     // update state
+//     setMessage(newMessage);
+//   };
 
-  const handleSaveMessage = () => {
-    if (messageId) {
-      updateMessage(message).then(history.push("/messages"));
-    } else {
-      addMessage(message).then(history.push("/messages"));
-    }
-  };
+//   const handleSaveMessage = () => {
+//     if (messageId) {
+//       updateMessage(message).then(history.push("/messages"));
+//     } else {
+//       addMessage(message).then(history.push("/messages"));
+//     }
+//   };
 
-  return (
-    <>
-      <form className="form">
-        <label htmlFor="message-title">Title:</label>
-        <input
-          className="message-title"
-          required
-          type="text"
-          id="title"
-          value={message.title}
-          onChange={handleControlledInputChange}
-        ></input>
+//   return (
+//     <>
+//       <form className="form">
+//         <label htmlFor="message-title">Title:</label>
+//         <input
+//           className="message-title"
+//           required
+//           type="text"
+//           id="title"
+//           value={message.title}
+//           onChange={handleControlledInputChange}
+//         ></input>
 
-        <label htmlFor="message-title">Message:</label>
-        <input
-          className="message-message"
-          required
-          type="text"
-          id="message"
-          value={message.message}
-          onChange={handleControlledInputChange}
-        ></input>
-        <label htmlFor="message-recipient">PRIVATE MESSAGE ONLY:</label>
-        <select
-          name="messageId"
-          id="recipientId"
-          value={message.recipientId}
-          className="form-control"
-          onChange={handleControlledInputChange}
-        >
-          <option>Select a Recipient</option>
-          {users.map((user) => {
-            return (
-              <option key={user.id} value={user.id}>
-                {user.name}
-              </option>
-            );
-          })}
-        </select>
+//         <label htmlFor="message-title">Message:</label>
+//         <input
+//           className="message-message"
+//           required
+//           type="text"
+//           id="message"
+//           value={message.message}
+//           onChange={handleControlledInputChange}
+//         ></input>
+//         <label htmlFor="message-recipient">PRIVATE MESSAGE ONLY:</label>
+//         <select
+//           name="messageId"
+//           id="recipientId"
+//           value={message.recipientId}
+//           className="form-control"
+//           onChange={handleControlledInputChange}
+//         >
+//           <option>Select a Recipient</option>
+//           {users.map((user) => {
+//             return (
+//               <option key={user.id} value={user.id}>
+//                 {user.name}
+//               </option>
+//             );
+//           })}
+//         </select>
 
-        <button className="new-message-button" onClick={handleSaveMessage}>
-          {messageId ? "Save Message" : "Add Message"}
-        </button>
-      </form>
-    </>
-  );
-};
+//         <button className="new-message-button" onClick={handleSaveMessage}>
+//           {messageId ? "Save Message" : "Add Message"}
+//         </button>
+//       </form>
+//     </>
+//   );
+// };
 
 // import React, { useContext, useEffect, useState } from "react"
 // import { useHistory, useParams } from "react-router-dom"
@@ -358,122 +358,122 @@ export const MessageForm = () => {
 //   )
 // }  
 
-// import React, { useContext, useEffect, useState } from "react"
-// import { useHistory, useParams } from "react-router"
-// import { MessageContext } from "./MessageProvider"
-// import { UserContext } from "../users/UserProvider"
-// import "./Message.css"
+import React, { useContext, useEffect, useState } from "react"
+import { useHistory, useParams } from "react-router"
+import { MessageContext } from "./MessageProvider"
+import { UserContext } from "../users/UserProvider"
+import "./Message.css"
 
-// export const MessageForm = () => {
-//     const { addMessage, updateMessage, getMessageById } = useContext(MessageContext)
-//     const { users, getUsers } = useContext(UserContext)
-//     const history = useHistory()
-//     const { messageId } = useParams()
-//     const [isLoading, setIsLoading] = useState(true)
+export const MessageForm = () => {
+    const { addMessage, updateMessage, getMessageById } = useContext(MessageContext)
+    const { users, getUsers } = useContext(UserContext)
+    const history = useHistory()
+    const { messageId } = useParams()
+    const [isLoading, setIsLoading] = useState(true)
 
-//     useEffect(() => {
-//         if (messageId) {
-//             getMessageById(messageId).then(event => {
-//                 setMessage(event)
-//                 setIsLoading(false)
-//             })
-//         } else {
-//             setIsLoading(false)
-//         }
-//     }, [])
+    useEffect(() => {
+        if (messageId) {
+            getMessageById(messageId).then(event => {
+                setMessage(event)
+                setIsLoading(false)
+            })
+        } else {
+            setIsLoading(false)
+        }
+    }, [])
 
-//     const [message, setMessage] = useState({
-//         body: "",
-//         userId: 0,
-//         recipientId: 0
-//     })
+    const [message, setMessage] = useState({
+        body: "",
+        userId: 0,
+        recipientId: 0
+    })
 
-//     const [privateDialog, setPrivateDialog] = useState(false)
-//     const [recipientId, setRecipientId] = useState(0)
+    const [privateDialog, setPrivateDialog] = useState(false)
+    const [recipientId, setRecipientId] = useState(0)
 
-//     const recipientName = users.find(user => user.id === recipientId)?.name
+    const recipientName = users.find(user => user.id === recipientId)?.name
 
-//     const placeholderString = recipientId ? `Private message to ${recipientName}` : "Type '@' to make message private"
+    const placeholderString = recipientId ? `Private message to ${recipientName}` : "Type '@' to make message private"
 
-//     const handleControlledInputChange = event => {
-//         const newMessage = { ...message }
-//         newMessage[event.target.id] = event.target.value
+    const handleControlledInputChange = event => {
+        const newMessage = { ...message }
+        newMessage[event.target.id] = event.target.value
 
-//         if (newMessage.body === "@") {
-//             setPrivateDialog(true)
-//         }
+        if (newMessage.body === "@") {
+            setPrivateDialog(true)
+        }
 
-//         setMessage(newMessage)
-//     }
+        setMessage(newMessage)
+    }
 
-//     const handleDialogClose = () => {
-//         setPrivateDialog(false)
+    const handleDialogClose = () => {
+        setPrivateDialog(false)
 
-//         setMessage({
-//             body: "",
-//             userId: 0,
-//             recipientId: 0
-//         })
-//     }
+        setMessage({
+            body: "",
+            userId: 0,
+            recipientId: 0
+        })
+    }
 
-//     const handleClickSendMessage = event => {
-//         event.preventDefault()
+    const handleClickSendMessage = event => {
+        event.preventDefault()
 
-//         const currentUserId = parseInt(sessionStorage.getItem("Outnabout_user"))
+        const currentUserId = parseInt(sessionStorage.getItem("Outnabout_user"))
 
-//         setIsLoading(true)
-//         if (messageId) {
-//             updateMessage({
-//                 id: message.id,
-//                 body: message.body,
-//                 userId: currentUserId,
-//                 recipientId: message.recipientId
-//             }).then(() => history.push("/messages"))
-//         } else {
-//             const newMessage = {
-//                 body: message.body,
-//                 userId: currentUserId,
-//                 recipientId: recipientId
-//             }
+        setIsLoading(true)
+        if (messageId) {
+            updateMessage({
+                id: message.id,
+                body: message.body,
+                userId: currentUserId,
+                recipientId: message.recipientId
+            }).then(() => history.push("/messages"))
+        } else {
+            const newMessage = {
+                body: message.body,
+                userId: currentUserId,
+                recipientId: recipientId
+            }
 
-//             addMessage(newMessage)
-//                 .then(setRecipientId(0))
-//                 .then(setMessage({
-//                     body: "",
-//                     userId: 0,
-//                     recipientId: 0
-//                 }))
-//         }
-//     }
+            addMessage(newMessage)
+                .then(setRecipientId(0))
+                .then(setMessage({
+                    body: "",
+                    userId: 0,
+                    recipientId: 0
+                }))
+        }
+    }
 
-//     return (
-//         <>
-//             <div className="main__message__form">
-//                 <dialog className="privateDialog" open={privateDialog}>
-//                     <div className="radio__wrapper">
-//                         <div>Send to?</div>
-//                         {users.map(user => {
-//                             return <label className="radio-group">
-//                                 <input className="radio-button" name="recipient" type="radio" value={user.id} onChange={() => setRecipientId(user.id)} />{user.name}
-//                             </label>
-//                         })}
-//                         <label className="radio-group">
-//                             <input className="radio-button" type="radio" name="recipient" value="public" onChange={() => setRecipientId(0)} />Public Message
-//                         </label>
-//                         <button className="dialog-button" onClick={handleDialogClose}>Close</button>
-//                     </div>
-//                 </dialog>
-//                 <form className="messageForm">
-//                     <fieldset className="message__textarea">
-//                         <div className="form-group">
-//                             <textarea type="text" id="body" required autoFocus className="form-control" placeholder={placeholderString} value={message.body} onChange={handleControlledInputChange} />
-//                         </div>
-//                     </fieldset>
-//                     <button className="send__message__button" onClick={handleClickSendMessage}>
-//                         {messageId ? "Update Message" : "Send Message"}
-//                     </button>
-//                 </form>
-//             </div>
-//         </>
-//     )
-// }
+    return (
+        <>
+            <div className="main__message__form">
+                <dialog className="privateDialog" open={privateDialog}>
+                    <div className="radio__wrapper">
+                        <div>Send to?</div>
+                        {users.map(user => {
+                            return <label className="radio-group">
+                                <input className="radio-button" name="recipient" type="radio" value={user.id} onChange={() => setRecipientId(user.id)} />{user.name}
+                            </label>
+                        })}
+                        <label className="radio-group">
+                            <input className="radio-button" type="radio" name="recipient" value="public" onChange={() => setRecipientId(0)} />Public Message
+                        </label>
+                        <button className="dialog-button" onClick={handleDialogClose}>Close</button>
+                    </div>
+                </dialog>
+                <form className="messageForm">
+                    <fieldset className="message__textarea">
+                        <div className="form-group">
+                            <textarea type="text" id="body" required autoFocus className="form-control" placeholder={placeholderString} value={message.body} onChange={handleControlledInputChange} />
+                        </div>
+                    </fieldset>
+                    <button className="send__message__button" onClick={handleClickSendMessage}>
+                        {messageId ? "Update Message" : "Send Message"}
+                    </button>
+                </form>
+            </div>
+        </>
+    )
+}

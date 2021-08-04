@@ -15,7 +15,7 @@ import { FriendProvider } from "./friends/FriendProvider"
 import { FriendSearch } from "./friends/FriendSearch"
 import { FriendDetail } from "./friends/FriendDetail"
 import { FriendList } from "./friends/FriendList"
-
+import { InterestedProvider } from "./interested/InterestedProvider"
 
 export const ApplicationViews = () => {
     return (
@@ -27,7 +27,9 @@ export const ApplicationViews = () => {
       </Route>
 
       <UserProvider>
-                <FriendProvider>
+          <InterestedProvider>
+            <FriendProvider>
+                
                 <EventProvider>
             <Route exact path="/events">
                 <EventList />
@@ -40,7 +42,7 @@ export const ApplicationViews = () => {
 	          </Route>
       </EventProvider>
                 </FriendProvider>
-
+                </InterestedProvider>
 
                 <FriendProvider>
                     <Route path="/friends">
@@ -55,6 +57,7 @@ export const ApplicationViews = () => {
             {/* Render the component for list of friends */}
           </Route>
         </FriendProvider>
+
 
         <FriendProvider>
           <UserProvider>
@@ -74,37 +77,6 @@ export const ApplicationViews = () => {
                     </FriendProvider>
                 </MessageProvider>
 
-                {/* Render the component for the user's tasks */}
-                {/* <TaskProvider>
-                    <UserProvider>
-                        <Route exact path="/tasks">
-                            <TaskList />
-                        </Route>
-                        <Route exact path="/tasks/create">
-                            <TaskForm />
-                        </Route>
-                        <Route path="/tasks/edit/:taskId(\d+)">
-                            <TaskForm />
-                        </Route>
-                    </UserProvider>
-                </TaskProvider> */}
-
-                {/* <FriendProvider>
-                    <PlannedEventProvider>
-                        <Route exact path="/plannedEvents">
-                            <PlannedEventList />
-                        </Route>
-                        <Route exact path="/plannedEvents/create">
-                            <PlannedEventForm />
-                        </Route>
-                        <Route
-                            exact
-                            path="/plannedEvents/edit/:plannedEventId(\d+)"
-                        >
-                            <PlannedEventForm />
-                        </Route>
-                    </PlannedEventProvider>
-                </FriendProvider> */}
             </UserProvider>
 
             <UserProvider>
@@ -117,46 +89,3 @@ export const ApplicationViews = () => {
           </>
     )
 } 
-//       {/* <EventProvider>
-//             <Route exact path="/">
-//             <Home />
-//                 <EventList />
-//             </Route>
-//             <Route exact path="/events/create">
-//               <EventForm />
-//             </Route>  
-//             <Route exact path="/event/detail/:eventId(\d+)">
-// 		          <EventDetail />
-// 	          </Route>
-//       </EventProvider>
-      
-//       <MessageProvider>
-//            <FriendProvider>
-//               <Route exact path="/messages">
-//                 <MessageList />
-//                 </Route>
-//                  <Route exact path="/messages/edit/:messageId(\d+)">
-//                 <MessageForm />
-//               </Route>
-//           </FriendProvider>
-//       </MessageProvider>
-//  */}
-//       {/* <UserProvider>
-//         <LocationProvider>
-//           <Route exact path="/employees">
-//             <EmployeeList />
-//           </Route>
-//           <Route exact path="/employees/create">
-//             <EmployeeForm />
-//           </Route>
-//         </LocationProvider>
-//       </UserProvider> */} 
- 
-
-//       {/* <Route path="/login">
-//         <Login />
-//       </Route> */}
-//     {/* </>
-//   );
-// }; */}
-          

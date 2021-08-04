@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react"
 import { CommentContext } from "./CommentProvider"
-// import "./Comment.css"
+import "./Comment.css"
 import { useHistory } from 'react-router-dom';
 
 export const CommentForm = () => {

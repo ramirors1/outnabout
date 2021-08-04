@@ -11,7 +11,9 @@ export const EventCard = ({ event }) =>(
   </Link>
         </h3>
         <div className="event__date">{ event.date }</div>
+        
     </section>
+    
 )       
 
 
