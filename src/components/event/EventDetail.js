@@ -3,7 +3,7 @@ import { EventContext } from "./EventProvider"
 import "./Event.css"
 import { useParams } from "react-router-dom"
 import { useHistory } from "react-router-dom"
-import { CommentCard } from "../comments/CommentCard";
+import { InterestedForm } from "../interested/InterestedForm";
 import { addInterested, InterestedContext } from "../interested/InterestedProvider"
 
 export const EventDetail = () => {
@@ -46,9 +46,7 @@ return (
         <div>Comment: {event.comment}</div>
         
         {/* <div className="event__timestamp">{event.timestamp }</div>      */}
-        {/* <button onClick={handleInterested}>
-          Add to Interested
-          </button> */}
+        <InterestedForm event={event}/>
 
         { event.userId === currentUser ?(   //If this condition is true, then delete button will be displayed for current user//
         <>

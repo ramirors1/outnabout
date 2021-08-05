@@ -50,6 +50,12 @@ export const ApplicationViews = () => {
                     </Route>
                 </FriendProvider>
 
+        <InterestedProvider>
+          <Route exact path="/interested">
+            {/* Render the component for list of interested */}
+          </Route>
+        </InterestedProvider>   
+
         <FriendProvider>
           <Route exact path="/friends">
               <FriendSearch />
