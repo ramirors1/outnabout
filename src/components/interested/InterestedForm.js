@@ -3,16 +3,19 @@ import { InterestedContext } from "./InterestedProvider"
 // import "./Event.css"
 import { useHistory } from 'react-router-dom';
 
-export const InterestedForm = (event, user) => {
-  const { interested, addInterested } = useContext(InterestedContext)
+export const InterestedForm = ({event}) => {
+  const { addInterested } = useContext(InterestedContext)
   const history = useHistory()
   const currentUserId = parseInt(localStorage.getItem("Outnabout_user"))
   const handleInterested = () => {
-  const interest = {eventId:event.id, userId:currentUserId, interestedId:interested.id}
+debugger    
+  const interest = {
+    eventId: event.id,
+    userId: currentUserId
+  }
     addInterested(interest)
       .then(() => {
         history.push("/events")
-        history.push("/interested")
        
 
       })}
