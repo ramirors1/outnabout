@@ -1,3 +1,5 @@
+//Module that displays Home page, exported to index.js//
+
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { ApplicationViews } from "./ApplicationViews";

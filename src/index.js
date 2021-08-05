@@ -1,3 +1,5 @@
+//Imports functionality for the project//
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Outnabout } from './components/Outnabout';

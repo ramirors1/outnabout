@@ -25,9 +25,9 @@ debugger
                    
   return (
     <>
-    <button onClick={handleInterested}>
+    {/* <button onClick={handleInterested}>
     Add to Interested
-    </button> 
+    </button>  */}
     </>                  
   
   )

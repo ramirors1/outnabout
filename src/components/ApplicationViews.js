@@ -1,3 +1,5 @@
+//Module that consolidates all providers and routes to Project's js module //
+
 import React from "react"
 import { Route } from "react-router-dom"
 import { Home } from "./Home"
@@ -31,10 +33,12 @@ export const ApplicationViews = () => {
             <FriendProvider>
                 
                 <EventProvider>
-            <Route exact path="/events">
+            <Route exact path="/events"> 
+             {/* Routes through EventProvider to the eventList to display a list of events in the events module */}
                 <EventList />
             </Route>
             <Route exact path="/events/create">
+              {/* Takes you to the add EventForm */}
               <EventForm />
             </Route>  
             <Route exact path="/events/detail/:eventId(\d+)">

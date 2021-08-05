@@ -46,7 +46,7 @@ return (
         <div>Comment: {event.comment}</div>
         
         {/* <div className="event__timestamp">{event.timestamp }</div>      */}
-        <InterestedForm event={event}/>
+        {/* <InterestedForm event={event}/> */}
 
         { event.userId === currentUser ?(   //If this condition is true, then delete button will be displayed for current user//
         <>
