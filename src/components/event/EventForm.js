@@ -39,7 +39,7 @@ export const EventForm = () => {
       //Invoke addEvent passing the new event object as an argument
       //Once complete, change the url and display the article list
 
-      const newEvent = {
+      const newEvent = {  //Data that will be includedd in the new object
         title: event.title,
         city: event.city,
         date: event.date,

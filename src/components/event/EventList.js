@@ -1,3 +1,4 @@
+//Displays items in main events page//
 import React, { useContext, useEffect, useState } from "react"
 import { useHistory } from 'react-router-dom';
 import { EventContext } from "./EventProvider"
@@ -12,7 +13,7 @@ export const EventList = () => {
 
     // console.log(filteredEvents)
 
-    // Initialization effect hook -> Go get article data
+    // Initialization effect hook -> Go get event data
     useEffect(()=>{
         getEvents()
     }, [])

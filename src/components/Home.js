@@ -1,3 +1,4 @@
+//Displays the below on homepage of app once logged in//
 import React from "react";
 import { PropsAndState } from './PropsAndState'
 

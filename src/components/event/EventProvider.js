@@ -15,16 +15,16 @@ export const EventProvider = (props) => {   //Props are used to pass data from a
 
     const getEventById = (id) => {
         return fetch(`http://localhost:8088/events/${id}?_expand=user`)
-        .then(res => res.json()) // note we don't set anything on state here. Why?
+        .then(res => res.json()) // note we don't set anything on state here. Why?//
     }
 
     const addEvent = eventObj => {
         return fetch("http://localhost:8088/events", {
-            method: "POST",
+            method: "POST", 
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(eventObj)
+            body: JSON.stringify(eventObj)  //JSON.stringify() is used to convert JSON into a string.//
         })
         .then(getEvents)
     }

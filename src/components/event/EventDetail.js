@@ -7,15 +7,15 @@ import { InterestedForm } from "../interested/InterestedForm";
 import { addInterested, InterestedContext } from "../interested/InterestedProvider"
 
 export const EventDetail = () => {
-  const { getEventById } = useContext(EventContext)
+  const { getEventById } = useContext(EventContext) //useContext allows the passing of data to children elements//
   const { addInterested } = useContext(InterestedContext)
 
 	      const [event, setEvent] = useState({})
-        const history = useHistory()
+        const history = useHistory() //useHistory lets you access the history instance used by React Router.//
         const { deleteEvent } = useContext(EventContext)
 
-	      const {eventId} = useParams();
-        const currentUser = parseInt(localStorage.getItem("Outnabout_user"));
+	      const {eventId} = useParams();  //useParams hooks let you access the parameters of the current route//
+        const currentUser = parseInt(localStorage.getItem("Outnabout_user"));  //parseInt() function parses a string argument and returns an integer//
 
         const handleDelete = () => {
           deleteEvent(event.id)
